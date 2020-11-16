@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>stock</title>
+  </head>
+  <body>
+    {% extends 'templates.html' %} {% block content %}
+    <div style = "padding: 0 0 20px 26px;">
+	    <img style="-webkit-user-select: none;" src = "{% url 'cctv_stream' %}" width='640' height='480'>
+    </div>
+    {% endblock %}
+  </body>
+</html>

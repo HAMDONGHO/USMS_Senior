@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>b_board detail</title>
+  </head>
+
+  <body>
+    {% extends 'templates.html' %} {% block content %}
+    <br />
+    <div>
+      <h1>{{post.title}}</h1>
+      <h3>{{post.text}}</h3>
+      <pre><p>{{post.created_date}}  <a href="{% url 'home' %}">Home</a>  
+        {% if post.author == user %} 
+        <a href="{% url 'edit' post.id %}">Edit</a>  <a href="{% url 'delete' post.id %}">Delete</a></p></pre>
+      {% endif %}
+      <br />
+    </div>
+  </body>
+
+  <h5>Comments</h5>
+
+  <br />
+  {% for comment in post.comment_set.all %}
+  <h5>{{comment.content}}</h5>
+  <pre><p>작성자: {{comment.author}}   작성일자: {{comment.created_date}}   {% if comment.author == user %} <a href="{% url 'comment_delete' comment.pk %}">Comment Delete</a> {% endif %}</p></pre>
+  {% endfor %} {% if user.is_active %}
+  <form action="{% url 'comment_new' post.pk %}" method="POST">
+    <div class="card my-4">
+      <h5 class="card-header">Leave a Comment:</h5>
+      <div class="card-body">
+        <form method="POST">
+          {% csrf_token %} {{commentForm}}
+          <div class="form-group">{{ comment_form }}</div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </form>
+  {% endif %} {% endblock %}
+</html>

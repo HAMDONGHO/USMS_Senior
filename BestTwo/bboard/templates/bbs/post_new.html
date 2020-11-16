@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>b_board new post</title>
+  </head>
+
+  <body>
+    {% extends 'templates.html' %} {% block content %}
+    <br />
+    <br />
+    <h2>New Post</h2>
+    <a href="{% url 'home' %}">Home</a>
+    <form method="POST">
+      <br />
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit">save</button>
+    </form>
+    {% endblock %}
+  </body>
+</html>

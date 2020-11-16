@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BesTwo</title>
+    <style>
+      .img {
+        position: relative;
+        height: 50vh;
+        background-size: cover;
+      }
+
+      .img-cover {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+      }
+
+      .img .content {
+        position: absolute;
+        top: 30%;
+        left: 20%;
+        transform: translate(-50%, -50%);
+        font-size: 5rem;
+        color: white;
+        z-index: 2;
+        text-align: center;
+      }
+      div.left {
+        width: 50%;
+        float: left;
+        box-sizing: border-box;
+      }
+      div.right {
+        border-left: solid #6b6969;
+        width: 50%;
+        float: right;
+        box-sizing: border-box;
+      }
+      #center_content{
+		  text-align: center;
+	  }
+    </style>
+  </head>
+  <body>
+    {% extends 'templates.html' %} {% block content %}
+    <div class="img">
+      <div class="content">
+	      &nbsp; Humanless<br>
+	      System
+      </div>
+      <div class="img-cover"></div>
+    </div>
+    <div>
+      <hr style="border: 5px double orange; " />
+    </div>
+      <p id="out"></p>
+    </div>
+    <div>
+      <hr style="color: black;">
+    </div>
+    <div>
+      <div class="left"><h4 id = "center_content"> *주문목록* </h4>
+      {% for order in orders.all %}
+			<ul>
+				<li>Table: {{order.table}} / 주문: {{order.content}} / 시간: {{order.order_time}}</li>
+			</ul>
+			{% endfor %}
+	</div>
+      <div class="right"> <h4 id = "center_content"> *게시판*</h4>
+      {% for post in posts.all %}
+			<ul>
+				<li>{{post.title}} / 시간: {{post.created_date}}</li>
+			</ul>
+			{% endfor %}
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>
